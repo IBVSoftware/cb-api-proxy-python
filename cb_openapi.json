@@ -1,0 +1,2310 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Collaboard Public Web API",
+        "version": "2.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.collaboard.app/public",
+            "description": "Production server"
+        },
+        {
+            "url": "https://test-api.collaboard.app/public",
+            "description": "Test server"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],	
+    "paths": {
+        "/api/public/v2/collaborationhub/projects/owned": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns a paged list of all projects owned by the calling user.",
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The page size",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "The current page number",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetMyProjectsCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetMyProjectsCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetMyProjectsCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/participating": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns a paged list of the project that the user participates in.",
+                "parameters": [
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The page size",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "The current page number",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetParticipatingProjectsCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetParticipatingProjectsCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetParticipatingProjectsCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns a project",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Updates the project with the given ID.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Deletes the project with the given ID.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects": {
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Creates a new project",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/copy": {
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Copies the project with the given ID as a new project.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CopyProjectRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CopyProjectRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CopyProjectRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CopyProjectRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CopyProjectCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CopyProjectCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CopyProjectCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/copy/{operation_id}": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns the status of the project copy operation",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "operation_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CopyProjectCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CopyProjectCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CopyProjectCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/invitationlink": {
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Creates a link that can be used to invite a user to a project.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectInvitationLinkCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectInvitationLinkCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectInvitationLinkCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/users": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns a list of all users participating in the given project.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "The project ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The page size",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "The current page number",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectParticipantsCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectParticipantsCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectParticipantsCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Adds a participant to a project.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "The project ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Updates a project participant.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "The project ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectParticipantRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectParticipantRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectParticipantRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectParticipantRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/users/{username}": {
+            "delete": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Removes a participant from a project",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "The project ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "The participant's username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/tiles": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns a paged list of the tiles of the given project.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "The project ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The page size",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "The current page number",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetTilesByProjectIdCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetTilesByProjectIdCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetTilesByProjectIdCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Creates a new tile.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "The project ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "The data of the tile to be created",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateTileRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateTileRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateTileRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateTileRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateTileCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateTileCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CreateTileCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/tiles/{tile_id}": {
+            "delete": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Deletes a tile.",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "The project ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "tile_id",
+                        "in": "path",
+                        "description": "The tile ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/auth/token": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns a user authorization token that can be used to make authenticated requests to the API.\r\nThis method uses the ApiKey provided in the Authorization header in the form Bearer {api-key}",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetAuthTokenCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetAuthTokenCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetAuthTokenCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/auth/userinfo": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns the current user details.",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetUserInfoCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetUserInfoCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetUserInfoCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/subscriptions/license": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Returns the current licensing information for the calling user.",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetLicenseInfoCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetLicenseInfoCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetLicenseInfoCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/subscriptions/{subscription_id}/users": {
+            "get": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Removes a user from the given subscription.",
+                "parameters": [
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "The page size",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "The current page number",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetSubscriptionUsersCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetSubscriptionUsersCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetSubscriptionUsersCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Adds a user to the given subscription.",
+                "parameters": [
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.AddSubscriptionUserRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.AddSubscriptionUserRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.AddSubscriptionUserRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.AddSubscriptionUserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/subscriptions/{subscription_id}/users/invite": {
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Invites a user to the given subscription. This method will send an invitation email to the user, which the user can either accept or reject.",
+                "parameters": [
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json-patch+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.InviteSubscriptionUserRequest"
+                            }
+                        },
+                        "application/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.InviteSubscriptionUserRequest"
+                            }
+                        },
+                        "text/json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.InviteSubscriptionUserRequest"
+                            }
+                        },
+                        "application/*+json; x-api-version=2.0": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.InviteSubscriptionUserRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/subscriptions/{subscription_id}/users/{username}": {
+            "delete": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Removes a user from the given subscription.",
+                "parameters": [
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "The subscription id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "in": "path",
+                        "description": "The username to remove",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.CallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/public/v2/collaborationhub/projects/{project_id}/files": {
+            "post": {
+                "tags": [
+                    "PublicApi"
+                ],
+                "summary": "Uploads a file on the server and creates the corresponding file tile.\r\nThis method will also trigger the image thumbnail generation, if applicable for the file type",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data; x-api-version=2.0": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "formFile": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            },
+                            "encoding": {
+                                "formFile": {
+                                    "style": "form"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "text/plain; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.UploadFileCallResult"
+                                }
+                            },
+                            "application/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.UploadFileCallResult"
+                                }
+                            },
+                            "text/json; x-api-version=2.0": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.UploadFileCallResult"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "IBV.CLService.MetaEntities.AuthenticatedUser": {
+                "type": "object",
+                "properties": {
+                    "dateCreated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "dateLastUpdated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "dateLastActivity": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.AuthenticatedUserExt": {
+                "type": "object",
+                "properties": {
+                    "dateCreated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "dateLastUpdated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "dateLastActivity": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.ITileContent": {
+                "type": "object",
+                "properties": {
+                    "jSonType": {
+                        "type": "string",
+                        "nullable": true,
+                        "readOnly": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    20,
+                    255
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "IBV.CLService.MetaEntities.ProjectParticipationTypeEnum": {
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.AddSubscriptionUserRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "username": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "permission": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.CopyProjectRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "clientConnectionId": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectInvitationRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "email": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "notes": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "memberPermission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum"
+                    },
+                    "guestPermission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum"
+                    },
+                    "invitationUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "validForMinutes": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "password": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "guestIdentificationRequired": {
+                        "type": "boolean"
+                    },
+                    "messageTheme": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateProjectRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "backgroundColor": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isActivityLogEnabled": {
+                        "type": "boolean"
+                    },
+                    "isVersioningEnabled": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.CreateTileRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "tile": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.TileStatus"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.InviteSubscriptionUserItem": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "firstName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lastName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "companyName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "language": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.InviteSubscriptionUserRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "invitationAcceptUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "invitationRejectUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "messageTheme": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Requests.Public.V2_0.InviteSubscriptionUserItem"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectParticipantRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "username": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "permission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Requests.Public.V2_0.UpdateProjectRequest": {
+                "type": "object",
+                "properties": {
+                    "uniqueDeviceId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.CallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.CopyProjectCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "operationId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.StateMachineStatus"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "projectId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "containerUri": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.CreateProjectInvitationLinkCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "invitationUrl": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.CreateTileCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "tile": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.TileStatus"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetAuthTokenCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "authorizationToken": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "expiresIn": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetLicenseInfoCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "isActive": {
+                        "type": "boolean"
+                    },
+                    "subscriptionId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "productId": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "expirationDate": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "numberOfOwnedProjects": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "hasPendingSubscriptionInvitation": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetMyProjectsCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetMyProjectsItem"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetMyProjectsItem": {
+                "type": "object",
+                "properties": {
+                    "project": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.Project"
+                    },
+                    "thumbnailUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "permission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum"
+                    },
+                    "isLicensed": {
+                        "type": "boolean"
+                    },
+                    "lastAccessDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "numberOfParticipants": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetParticipatingProjectsCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetParticipatingProjectsItem"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetParticipatingProjectsItem": {
+                "type": "object",
+                "properties": {
+                    "project": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.Project"
+                    },
+                    "thumbnailUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "permission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum"
+                    },
+                    "isLicensed": {
+                        "type": "boolean"
+                    },
+                    "lastAccessDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "numberOfParticipants": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "project": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.Project"
+                    },
+                    "thumbnailUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "permission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum"
+                    },
+                    "isLicensed": {
+                        "type": "boolean"
+                    },
+                    "lastAccessDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "numberOfParticipants": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectParticipantsCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectParticipantsItem"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetProjectParticipantsItem": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.AuthenticatedUser"
+                    },
+                    "permission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipantPermissionEnum"
+                    },
+                    "participationType": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ProjectParticipationTypeEnum"
+                    },
+                    "lastAccessDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetSubscriptionUsersCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.GetSubscriptionUsersItem"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetSubscriptionUsersItem": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "dateCreated": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.SubscriptionUserStatusEnum"
+                    },
+                    "permission": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.Responses.Public.Common.SubscriptionUserPermissionEnum"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetTilesByProjectIdCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageSize": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "pageNumber": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "results": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/IBV.CLService.MetaEntities.TileStatus"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.GetUserInfoCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "result": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.AuthenticatedUserExt"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.Project": {
+                "type": "object",
+                "properties": {
+                    "projectId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "type": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "containerUri": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "backgroundColor": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "createdBy": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "createdByUser": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "createdByUniqueMachineId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "creationDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedBy": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "updatedByUser": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lastUpdate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "zoomFactor": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "offsetX": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "offsetY": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "presenter": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.SubscriptionUserPermissionEnum": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    255
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.SubscriptionUserStatusEnum": {
+                "enum": [
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "IBV.CLService.MetaEntities.Responses.Public.Common.UploadFileCallResult": {
+                "type": "object",
+                "properties": {
+                    "errorCode": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "tile": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.TileStatus"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.StateMachineStatus": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    10,
+                    11,
+                    12
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "IBV.CLService.MetaEntities.TileBlobStatus": {
+                "enum": [
+                    1,
+                    2,
+                    5,
+                    6,
+                    7,
+                    10,
+                    11
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "IBV.CLService.MetaEntities.TilePinnedStateEnum": {
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "type": "integer",
+                "format": "int32"
+            },
+            "IBV.CLService.MetaEntities.TileStatus": {
+                "type": "object",
+                "properties": {
+                    "projectId": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "tileId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "oldTileId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "parentId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "typeTile": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.TileType"
+                    },
+                    "tileContent": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.ITileContent"
+                    },
+                    "positionX": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "positionY": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "height": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "width": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "zIndex": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "scaleX": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "scaleY": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "rotation": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lockedUser": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "pinnedState": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.TilePinnedStateEnum"
+                    },
+                    "backgroundColor": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "totalThumbUp": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "totalThumbDown": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "overallRating": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "totalRates": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "azureBlobStatus": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.TileBlobStatus"
+                    },
+                    "originalFileName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isHidden": {
+                        "type": "boolean"
+                    },
+                    "isDeleted": {
+                        "type": "boolean"
+                    },
+                    "bookedBy": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "bookingDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "retry": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "stateMStatus": {
+                        "$ref": "#/components/schemas/IBV.CLService.MetaEntities.StateMachineStatus"
+                    },
+                    "lockedBy": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lockedDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "IBV.CLService.MetaEntities.TileType": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    8,
+                    9,
+                    11,
+                    12,
+                    13,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24
+                ],
+                "type": "integer",
+                "format": "int32"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }		
+    }
+}
